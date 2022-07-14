@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cocuy\\source\\repos\\apitest\\apitest\\apitest.csproj": {}
+    "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\apitest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cocuy\\source\\repos\\apitest\\apitest\\apitest.csproj": {
+    "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\apitest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cocuy\\source\\repos\\apitest\\apitest\\apitest.csproj",
+        "projectUniqueName": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\apitest.csproj",
         "projectName": "apitest",
-        "projectPath": "C:\\Users\\cocuy\\source\\repos\\apitest\\apitest\\apitest.csproj",
-        "packagesPath": "C:\\Users\\cocuy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cocuy\\source\\repos\\apitest\\apitest\\obj\\",
+        "projectPath": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\apitest.csproj",
+        "packagesPath": "C:\\Users\\German\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\cocuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\German\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -91,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -22,29 +22,37 @@ namespace apitest.Controllers
             public object Getdata()
             {
                 var conectionable = new ConnectionSql();
-                using (IDbConnection queryable = conectionable.CreateConnection())
+                using (var queryable = conectionable.CreateConnection())
                 { 
                 queryable.Open();                
-                var result = queryable.Query("SELECT * from KundeProfile");
+                var result = queryable.Query("SELECT * from usertesting");
                 return result;
                 }
             }
 
         [HttpPost(Name = "Postapidapper")]
-        public object Postdata( userdifeine userinto)
+        public string Postdata( userdifeine userinto)
         {
             //var nuevovalor = otherData.ToString();
-            
-            return Ok(new { nombre="postMethos", codigo=200});
+            string respuesta=" ";
+            var conectionable = new ConnectionSql();
+            using (var queryable = conectionable.CreateConnection())
+            {
+                queryable.Open();
+                string userInsertuery = "INSERT INTO usertesting (name, email, age) VALUES (@Name, @Email, @Age)";
+                int rowsAffected = queryable.Execute(userInsertuery, userinto);
+                respuesta = rowsAffected.ToString();
+            }
+            return respuesta;
         }
     }
 
     public class userdifeine {
         public int IDkunde { get; set; } 
-        public string KundeNmae { get; set; }
-        public string KUndeEmail { get; set; }
-        public int KundeTel { get; set; }
-        public string KundeRole { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public int Age { get; set; }
+        public string Role { get; set; }
 
     }
 }
