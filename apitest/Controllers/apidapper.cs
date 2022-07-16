@@ -7,7 +7,7 @@ namespace apitest.Controllers
 {
 
 
-    [ApiController]
+        [ApiController]
         [Route("api/[controller]")]
         public class apidapper : ControllerBase
         {
@@ -36,10 +36,10 @@ namespace apitest.Controllers
             //var nuevovalor = otherData.ToString();
             string respuesta=" ";
             var conectionable = new ConnectionSql();
-            using (var queryable = conectionable.CreateConnection())
+            using ( var queryable = conectionable.CreateConnection())
             {
                 queryable.Open();
-                string userInsertuery = "INSERT INTO usertesting (name, email, age) VALUES (@Name, @Email, @Age)";
+                string userInsertuery = "INSERT INTO usertesting (name, email, age, contrasena) VALUES (@Name, @Email, @Age, @Password)";
                 int rowsAffected = queryable.Execute(userInsertuery, userinto);
                 respuesta = rowsAffected.ToString();
             }
@@ -52,7 +52,7 @@ namespace apitest.Controllers
         public string Name { get; set; }
         public string Email { get; set; }
         public int Age { get; set; }
-        public string Role { get; set; }
+        public string Password { get; set; }
 
     }
 }
