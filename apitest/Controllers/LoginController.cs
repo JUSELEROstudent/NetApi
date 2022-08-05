@@ -6,12 +6,9 @@ namespace apitest.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LoginController : Controller
+    public class Innerlogin : ControllerBase
     {
-
-
-
-        [HttpPost(Name = "PostLogin")]
+        [HttpPost(Name = "PostInnerlogin")]
         public string Postdata(login sesionuser)
         {
             //var nuevovalor = otherData.ToString();

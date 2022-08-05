@@ -18,17 +18,17 @@ namespace apitest.Controllers
 
             
 
-            [HttpGet(Name = "Getapidapper")]
-            public object Getdata()
-            {
-                var conectionable = new ConnectionSql();
-                using (var queryable = conectionable.CreateConnection())
-                { 
-                queryable.Open();                
-                var result = queryable.Query("SELECT * from usertesting");
-                return result;
-                }
+        [HttpGet(Name = "Getapidapper")]
+        public object Getdata()
+        {
+            var conectionable = new ConnectionSql();
+            using (var queryable = conectionable.CreateConnection())
+            { 
+            queryable.Open();                
+            var result = queryable.Query("SELECT * from usertesting");
+            return result;
             }
+        }
 
         [HttpPost(Name = "Postapidapper")]
         public string Postdata( userdifeine userinto)
