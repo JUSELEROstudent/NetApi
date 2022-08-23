@@ -9,26 +9,24 @@ namespace apitest.Controllers
     public class Innerlogin : ControllerBase
     {
         [HttpPost(Name = "PostInnerlogin")]
-        public string Postdata(login sesionuser)
+        public IActionResult Postdata(login sesionuser)//se responde una clase login MIENTRASTANTO
         {
             //var nuevovalor = otherData.ToString();
-            string respuesta = " ";
+            var respuesta = new List<dynamic>();
             var conectionable = new ConnectionSql();
             using (var queryable = conectionable.CreateConnection())
             {
+                
                 queryable.Open();
                 string loginString = "SELECT * FROM usertesting WHERE (name = @User OR email = @user) AND contrasena = @Password";
                 //string loginString = "SELECT * FROM usertesting ";
                 var rowsAffected = queryable.Query(loginString, sesionuser).ToList();
-                //if (rowsAffected.Count > 0)
-                //{
-                //    respuesta = rowsAffected.ToString();
-                //}
-                //else {
-                //    respuesta = " no se consiguio el valor digitado";
-                //}
+                respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
+                if (respuesta.Count > 0)
+                   return Ok(respuesta);
+                else
+                     return BadRequest(new { error = "no idea", cargo ="la chongada"});
             }
-            return respuesta;
         }
     }
 

@@ -1,4 +1,4 @@
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+var MyAllowSpecificOrigins = "https://localhost:8080";
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 

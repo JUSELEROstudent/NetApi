@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0jje8BSZnFuGKFX8oJPrNoSN56ClVH0LBO3TjSuNT6BxZzMlFUP31zmULZzU1WqeAgtkkt6zmKdDYhj4YnvK1g==",
+  "dgSpecHash": "3d8VE/RZto3p78mp5LJi+hhaAptDDcmJeKlUmtiTgWwHyzZViWV1f+YqR9ffMDyb8TBl1pRF9zwquVGeHeByZw==",
   "success": true,
   "projectFilePath": "C:\\Users\\cocuy\\source\\repos\\apitest\\apitest\\apitest.csproj",
   "expectedPackageFiles": [
@@ -61,6 +61,7 @@
     "C:\\Users\\cocuy\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\cocuy\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\cocuy\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\cocuy\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\cocuy\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Users\\cocuy\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\cocuy\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
