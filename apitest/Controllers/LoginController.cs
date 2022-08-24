@@ -1,38 +1,52 @@
-﻿using apitest.Services;
-using Dapper;
+﻿using System;
+using System.Net;
+using System.Web;
+using apitest.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace apitest.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class Innerlogin : ControllerBase
+    /// <summary>
+    /// login controller class for authenticate users
+    /// </summary>
+    [AllowAnonymous]
+    [Route("api/login")]
+    public class LoginController : ControllerBase
     {
-        [HttpPost(Name = "PostInnerlogin")]
-        public IActionResult Postdata(login sesionuser)//se responde una clase login MIENTRASTANTO
+        [HttpGet]
+        [Route("echoping")]
+        public IActionResult EchoPing()
         {
-            //var nuevovalor = otherData.ToString();
-            var respuesta = new List<dynamic>();
-            var conectionable = new ConnectionSql();
-            using (var queryable = conectionable.CreateConnection())
+            return Ok(true);
+        }
+
+        [HttpGet]
+        [Route("echouser")]
+        public IActionResult EchoUser()
+        {
+            var identity = Thread.CurrentPrincipal.Identity;
+            return Ok($" IPrincipal-user: {identity.Name} - IsAuthenticated: {identity.IsAuthenticated}");
+        }
+
+        [HttpPost]
+        [Route("authenticate")]
+        public IActionResult Authenticate(LoginRequest login)
+        {
+            if (login == null)
+                return BadRequest();
+
+            //TODO: Validate credentials Correctly, this code is only for demo !!
+            bool isCredentialValid = (login.Password == "123456");
+            if (isCredentialValid)
             {
-                
-                queryable.Open();
-                string loginString = "SELECT * FROM usertesting WHERE (name = @User OR email = @user) AND contrasena = @Password";
-                //string loginString = "SELECT * FROM usertesting ";
-                var rowsAffected = queryable.Query(loginString, sesionuser).ToList();
-                respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
-                if (respuesta.Count > 0)
-                   return Ok(respuesta);
-                else
-                     return BadRequest(new { error = "no idea", cargo ="la chongada"});
+                var token = TokenGenerator.GenerateTokenJwt(login.Username);
+                return Ok(token);
+            }
+            else
+            {
+                return Unauthorized();
             }
         }
-    }
-
-    public class login { 
-    
-        public string User { get; set; }
-        public string Password { get; set; }
     }
 }

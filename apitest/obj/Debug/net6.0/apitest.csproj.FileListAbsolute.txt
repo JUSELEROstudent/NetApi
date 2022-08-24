@@ -129,3 +129,5 @@ C:\Users\German\source\repos\NetApi\apitest\obj\Debug\net6.0\apitest.pdb
 C:\Users\German\source\repos\NetApi\apitest\obj\Debug\net6.0\apitest.genruntimeconfig.cache
 C:\Users\German\source\repos\NetApi\apitest\obj\Debug\net6.0\ref\apitest.dll
 C:\Users\cocuy\source\repos\apitest\apitest\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\German\source\repos\NetApi\apitest\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\German\source\repos\NetApi\apitest\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
