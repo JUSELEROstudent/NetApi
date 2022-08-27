@@ -10,17 +10,14 @@ namespace apitest.Controllers
  /// </summary>
     internal static class TokenGenerator
     {
-        public UserController(IConfiguration iConfig)
-        {
-            configuration = iConfig;
-        }
+        
         public static string GenerateTokenJwt(string username)
         {
             // appsetting for Token JWT
-            var secretKey = ["JWT_SECRET_KEY"];
-            var audienceToken = configurationer["JWT_AUDIENCE_TOKEN"];
-            var issuerToken = configurationer["JWT_ISSUER_TOKEN"];
-            var expireTime = configurationer["JWT_EXPIRE_MINUTES"];
+            var secretKey = "clave-secreta-api";//se tienen que cambiar los valores para hacerlos secretos.
+            var audienceToken = "http://localhost:8080";// se tienen que cambiar los valores para hacerlos secretos.
+            var issuerToken = "http://localhost:8080";//se tienen que cambiar los valores para hacerlos secretos.
+            var expireTime = "30";
 
             var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(secretKey));
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);

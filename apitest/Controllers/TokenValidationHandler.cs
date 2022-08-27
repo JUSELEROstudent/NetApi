@@ -43,9 +43,9 @@ namespace apitest.Controllers
 
             try
             {
-                var secretKey = _config["JWT_SECRET_KEY"];
-                var audienceToken = _config["JWT_AUDIENCE_TOKEN"];
-                var issuerToken = _config["JWT_ISSUER_TOKEN"];
+                var secretKey = "clave-secreta-api";//se tienen que cambiar los valores para hacerlos secretos.
+                var audienceToken = "http://localhost:8080";//se tienen que cambiar los valores para hacerlos secretos.
+                var issuerToken = "http://localhost:49220";//se tienen que cambiar los valores para hacerlos secretos.
                 var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(secretKey));
 
                 SecurityToken securityToken;
