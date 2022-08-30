@@ -1,5 +1,6 @@
 ﻿using apitest.Services;
 using Dapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace apitest.Controllers
@@ -21,10 +22,10 @@ namespace apitest.Controllers
                 string loginString = "SELECT * FROM usertesting WHERE (name = @User OR email = @user) AND contrasena = @Password";
                 //string loginString = "SELECT * FROM usertesting ";
                 var rowsAffected = queryable.Query(loginString, sesionuser).ToList();
-                respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
+                 respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
                 if (respuesta.Count > 0)
                 {
-                    var token = TokenGenerator.GenerateTokenJwt(rowsAffected[0].userId);
+                    var token = TokenGenerator.GenerateTokenJwt(rowsAffected[0].userId.ToString());
                     return Ok(token);
                 } else
                 {
@@ -32,28 +33,27 @@ namespace apitest.Controllers
                 }
             }
         }
+
+        [Authorize]
         [HttpGet(Name = "GetInnerlogin")]
-        public IActionResult Getdata()//se responde una clase login MIENTRASTANTO
+        public IActionResult Getdata(HttpRequestMessage request)//el iactionresult resulta la clase mas manejable falta ver la variante con "<>" la final
         {
-            //var nuevovalor = otherData.ToString();
-            var respuesta = new List<dynamic>();
+            string token="sepudo verificar ";
             var conectionable = new ConnectionSql();
             using (var queryable = conectionable.CreateConnection())
             {
-
-                queryable.Open();
-                string loginString = "SELECT * FROM usertesting WHERE (name = @User OR email = @user) AND contrasena = @Password";
-                var rowsAffected = queryable.Query(loginString, ).ToList();
-                respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
-                if (respuesta.Count > 0)
-                {
-                    var token = TokenValidationHandler.TryRetrieveToken(Request, )
-                    return Ok(token);
-                }
-                else
-                {
-                    return BadRequest(new { error = "no idea", cargo = "la chongada" });
-                }
+                //if (TokenValidationHandler.TryRetrieveToken(Request, token ))
+                //{
+                //    queryable.Open();
+                //    string loginString = "SELECT * FROM usertesting WHERE userId = @userId";
+                //    var rowsAffected = queryable.Query(loginString, new { userId = "nombre" }).ToList();
+                //    respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
+                   return Ok(token);
+                //}
+                //else
+                //{
+                //    return BadRequest(new { error = "problmea con el token", cargo = "la chongada" });
+                //}
             }
         }
     }
