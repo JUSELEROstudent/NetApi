@@ -9,6 +9,7 @@ namespace apitest.Controllers
     [Route("api/[controller]")]
     public class Innerlogin : ControllerBase
     {
+        [AllowAnonymous]
         [HttpPost(Name = "PostInnerlogin")]
         public IActionResult Postdata(login sesionuser)//se responde una clase login MIENTRASTANTO
         {
@@ -34,7 +35,7 @@ namespace apitest.Controllers
             }
         }
 
-        [Authorize]
+       
         [HttpGet(Name = "GetInnerlogin")]
         public IActionResult Getdata(HttpRequestMessage request)//el iactionresult resulta la clase mas manejable falta ver la variante con "<>" la final
         {

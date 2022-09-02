@@ -1,28 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
+﻿
 using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 
-namespace apitest.Controllers
+namespace apitest.Middleware
 {
-    /// <summary>
-    /// Token validator for Authorization Request using a DelegatingHandler
-    /// </summary>
-    internal class TokenValidationHandler 
+    public class TokenValidatorMiddleware
     {
-        //private IConfiguration _config;
-        protected static bool TryRetrieveToken(HttpContext request, out string token)
+        private static bool TryRetrieveToken(HttpRequestMessage request, out string token)
         {
             token = null;
-            var authzHeaders = request.Request.Headers["Authorization"];
-            //var otro = authzHeaders["Authorization"]
-            //if (!request.Headers.TryGetValues("Authorization", out authzHeaders) || authzHeaders.Count() > 1)
-            if (authzHeaders.Count() > 1)
+            IEnumerable<string> authzHeaders;
+            if (!request.Headers.TryGetValues("Authorization", out authzHeaders) || authzHeaders.Count() > 1)
             {
                 return false;
             }
@@ -30,9 +18,7 @@ namespace apitest.Controllers
             token = bearerToken.StartsWith("Bearer ") ? bearerToken.Substring(7) : bearerToken;
             return true;
         }
-
-        //public Task<HttpStatusCode> SendAsync(HttpContext request, CancellationToken cancellationToken)  se quita el token de cancelacion
-        public Task<HttpStatusCode> SendAsync(HttpContext request)
+        public async Task<Task> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             HttpStatusCode statusCode;
             string token;
@@ -41,7 +27,7 @@ namespace apitest.Controllers
             if (!TryRetrieveToken(request, out token))
             {
                 statusCode = HttpStatusCode.Unauthorized;
-                return SendAsync(request);
+                return SendAsync(request, cancellationToken);
             }
 
             try
@@ -67,7 +53,7 @@ namespace apitest.Controllers
                 Thread.CurrentPrincipal = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
                 //HttpContext.Current.User = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
 
-                return SendAsync(request);
+                return SendAsync(request, cancellationToken);
             }
             catch (SecurityTokenValidationException)
             {
@@ -78,9 +64,8 @@ namespace apitest.Controllers
                 statusCode = HttpStatusCode.InternalServerError;
             }
 
-            return Task<HttpStatusCode>.Factory.StartNew(() => statusCode);
+            return Task<HttpResponseMessage>.Factory.StartNew(() => new HttpResponseMessage(statusCode) { });
         }
-
         public bool LifetimeValidator(DateTime? notBefore, DateTime? expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
         {
             if (expires != null)
@@ -89,5 +74,6 @@ namespace apitest.Controllers
             }
             return false;
         }
+
     }
 }
