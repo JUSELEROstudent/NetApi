@@ -25,10 +25,11 @@ namespace apitest.Controllers
             if (authzHeaders.Count() > 1)
             {
                 return false;
-            }
+            }          
             var bearerToken = authzHeaders.ElementAt(0);
             token = bearerToken.StartsWith("Bearer ") ? bearerToken.Substring(7) : bearerToken;
             return true;
+           
         }
 
         //public Task<HttpStatusCode> SendAsync(HttpContext request, CancellationToken cancellationToken)  se quita el token de cancelacion
@@ -46,9 +47,10 @@ namespace apitest.Controllers
 
             try
             {
-                var secretKey = "clave-secreta-api";//se tienen que cambiar los valores para hacerlos secretos.
-                var audienceToken = "http://localhost:8080";//se tienen que cambiar los valores para hacerlos secretos.
-                var issuerToken = "http://localhost:49220";//se tienen que cambiar los valores para hacerlos secretos.
+                var AppName = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+                var secretKey = AppName.GetSection("CustomCOnfig")["JWT_SECRET_KEY"];
+                var audienceToken = AppName.GetSection("CustomCOnfig")["JWT_AUDIENCE_TOKEN"];
+                var issuerToken = AppName.GetSection("CustomCOnfig")["JWT_ISSUER_TOKEN"];
                 var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(secretKey));
 
                 SecurityToken securityToken;
@@ -67,7 +69,7 @@ namespace apitest.Controllers
                 Thread.CurrentPrincipal = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
                 //HttpContext.Current.User = tokenHandler.ValidateToken(token, validationParameters, out securityToken);
 
-                return SendAsync(request);
+                return Task<HttpStatusCode>.Factory.StartNew(() => HttpStatusCode.OK);
             }
             catch (SecurityTokenValidationException)
             {

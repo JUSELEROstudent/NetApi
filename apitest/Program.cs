@@ -29,11 +29,9 @@ app.Use(async (context, next) =>
     {
         var validation = new TokenValidationHandler();
         var responsefrom = await validation.SendAsync(context);
+       // responsefrom.Equals(System.Net.HttpStatusCode.OK) ? await next(): await context.Response.Redirect();
     }
-    //var features =  context.Request.Path;
-    //await context.Response.WriteAsync(context.Request.Path.ToString());
-    await next();
-    //await context.Response.WriteAsync("<br> la peticion en = " + context.Request.Path.ToString() + " con una peticion del tipo = " + context.Request.Method.ToString() );
+    
 });
 
 app.UseHttpsRedirection();

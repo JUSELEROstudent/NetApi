@@ -13,11 +13,12 @@ namespace apitest.Controllers
         
         public static string GenerateTokenJwt(string username)
         {
+            var AppName = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
             // appsetting for Token JWT
-            var secretKey = "clave-secreta-api";//se tienen que cambiar los valores para hacerlos secretos.
-            var audienceToken = "http://localhost:8080";// se tienen que cambiar los valores para hacerlos secretos.
-            var issuerToken = "http://localhost:8080";//se tienen que cambiar los valores para hacerlos secretos.
-            var expireTime = "30";
+            var secretKey = AppName.GetSection("CustomCOnfig")["JWT_SECRET_KEY"];//se tienen que cambiar los valores para hacerlos secretos.
+            var audienceToken = AppName.GetSection("CustomCOnfig")["JWT_AUDIENCE_TOKEN"];// se tienen que cambiar los valores para hacerlos secretos.
+            var issuerToken = AppName.GetSection("CustomCOnfig")["JWT_ISSUER_TOKEN"];//se tienen que cambiar los valores para hacerlos secretos.
+            var expireTime = AppName.GetSection("CustomCOnfig")["JWT_EXPIRE_MINUTES"];
 
             var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(secretKey));
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
