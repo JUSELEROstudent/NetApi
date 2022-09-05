@@ -23,13 +23,20 @@ app.Use(async (context, next) =>
 {
     if (context.Request.Path.ToString() == "/api/innerlogin" && context.Request.Method.ToString() == "POST")
     {
-
+        await next();
     }
     else
     {
         var validation = new TokenValidationHandler();
         var responsefrom = await validation.SendAsync(context);
-       // responsefrom.Equals(System.Net.HttpStatusCode.OK) ? await next(): await context.Response.Redirect();
+        if (responsefrom.Equals(System.Net.HttpStatusCode.OK))
+        {
+            await next();
+         }else
+        {
+            context.Response.HttpContext.Response.StatusCode = 400;
+            //await context.Response.WriteAsync("token noo concuerda ");
+        }
     }
     
 });
