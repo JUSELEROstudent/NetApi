@@ -31,8 +31,10 @@ app.Use(async (context, next) =>
         var responsefrom = await validation.SendAsync(context);
         if (responsefrom.Equals(System.Net.HttpStatusCode.OK))
         {
-            await next();
-         }else
+            await next.Invoke();
+            //await context.Response.WriteAsync("status code se sale de control");
+        }
+        else
         {
             context.Response.HttpContext.Response.StatusCode = 400;
             //await context.Response.WriteAsync("token noo concuerda ");

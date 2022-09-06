@@ -2,6 +2,7 @@
 using Dapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace apitest.Controllers
 {
@@ -9,7 +10,7 @@ namespace apitest.Controllers
     [Route("api/[controller]")]
     public class Innerlogin : ControllerBase
     {
-        [AllowAnonymous]
+        
         [HttpPost(Name = "PostInnerlogin")]
         public IActionResult Postdata(login sesionuser)//se responde una clase login MIENTRASTANTO
         {
@@ -26,7 +27,7 @@ namespace apitest.Controllers
                  respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
                 if (respuesta.Count > 0)
                 {
-                    var token = TokenGenerator.GenerateTokenJwt(rowsAffected[0].userId.ToString());
+                    var token = TokenGenerator.GenerateTokenJwt(rowsAffected[0].Userid.ToString());
                     return Ok(token);
                 } else
                 {
@@ -36,25 +37,26 @@ namespace apitest.Controllers
         }
 
        
-        [HttpGet(Name = "GetInnerlogin")]
-        public IActionResult Getdata(HttpRequestMessage request)//el iactionresult resulta la clase mas manejable falta ver la variante con "<>" la final
+        [HttpGet]
+        public IActionResult Getdata()//el iactionresult resulta la clase mas manejable falta ver la variante con "<>" la final
         {
+            
+            var stream = HttpContext.Request.Headers.Authorization.ToString();
+            var handler = new JwtSecurityTokenHandler();
+            var stream2 = stream.Remove(0,7);
+            var jsonToken = handler.ReadToken(stream2);
+            var tokenS = jsonToken as JwtSecurityToken;
+            var GetToUser = tokenS.Payload["unique_name"];
             string token="sepudo verificar ";
             var conectionable = new ConnectionSql();
             using (var queryable = conectionable.CreateConnection())
             {
-                //if (TokenValidationHandler.TryRetrieveToken(Request, token ))
-                //{
-                //    queryable.Open();
-                //    string loginString = "SELECT * FROM usertesting WHERE userId = @userId";
-                //    var rowsAffected = queryable.Query(loginString, new { userId = "nombre" }).ToList();
-                //    respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
-                   return Ok(token);
-                //}
-                //else
-                //{
-                //    return BadRequest(new { error = "problmea con el token", cargo = "la chongada" });
-                //}
+                queryable.Open();
+                string loginString = "SELECT * FROM usertesting WHERE Userid = @userId";
+                var rowsAffected = queryable.Query(loginString, new { userId = GetToUser }).ToList();
+                //respuesta = rowsAffected.Count() > 0 ? rowsAffected : respuesta.ToList();
+                return Ok(rowsAffected);
+               
             }
         }
     }
