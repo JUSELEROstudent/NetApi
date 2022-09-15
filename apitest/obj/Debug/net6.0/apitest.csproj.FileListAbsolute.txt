@@ -130,3 +130,6 @@ C:\Users\German\source\repos\NetApi\apitest\obj\Debug\net6.0\apitest.genruntimec
 C:\Users\German\source\repos\NetApi\apitest\obj\Debug\net6.0\ref\apitest.dll
 C:\Users\cocuy\source\repos\apitest\apitest\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\German\source\repos\NetApi\apitest\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\German\source\repos\NetApi\apitest\bin\Debug\net6.0\libman.json
+C:\Users\German\source\repos\NetApi\apitest\bin\Debug\net6.0\apitest.staticwebassets.runtime.json
+C:\Users\German\source\repos\NetApi\apitest\bin\Debug\net6.0\System.Net.WebSockets.WebSocketProtocol.dll

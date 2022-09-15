@@ -64,3 +64,6 @@ C:\Users\German\source\repos\NetApi\apitest\obj\Release\net6.0\refint\apitest.dl
 C:\Users\German\source\repos\NetApi\apitest\obj\Release\net6.0\apitest.pdb
 C:\Users\German\source\repos\NetApi\apitest\obj\Release\net6.0\apitest.genruntimeconfig.cache
 C:\Users\German\source\repos\NetApi\apitest\obj\Release\net6.0\ref\apitest.dll
+C:\Users\German\source\repos\NetApi\apitest\bin\Release\net6.0\libman.json
+C:\Users\German\source\repos\NetApi\apitest\bin\Release\net6.0\apitest.staticwebassets.runtime.json
+C:\Users\German\source\repos\NetApi\apitest\bin\Release\net6.0\System.Net.WebSockets.WebSocketProtocol.dll

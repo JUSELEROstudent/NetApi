@@ -1,11 +1,71 @@
 {
   "Version": 1,
-  "Hash": "8bhdySGMPoQ9JOsAbPbim3q5vJiCxsrVWg8H9OZdctc=",
+  "Hash": "in1RBJsnlbaLxn64yE9xxilTDphTbMRTz+qx/o2umLM=",
   "Source": "apitest",
   "BasePath": "_content/apitest",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "apitest\\wwwroot",
+      "Source": "apitest",
+      "ContentRoot": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\wwwroot\\",
+      "BasePath": "_content/apitest",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\wwwroot\\js\\chat.js",
+      "SourceId": "apitest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\wwwroot\\",
+      "BasePath": "_content/apitest",
+      "RelativePath": "js/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chat.js"
+    },
+    {
+      "Identity": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js",
+      "SourceId": "apitest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\wwwroot\\",
+      "BasePath": "_content/apitest",
+      "RelativePath": "js/signalr/dist/browser/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Identity": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\wwwroot\\js\\signalr\\dist\\browser\\signalr.min.js",
+      "SourceId": "apitest",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\German\\source\\repos\\NetApi\\apitest\\wwwroot\\",
+      "BasePath": "_content/apitest",
+      "RelativePath": "js/signalr/dist/browser/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\signalr\\dist\\browser\\signalr.min.js"
+    }
+  ]
 }
